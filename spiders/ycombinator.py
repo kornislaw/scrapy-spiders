@@ -7,8 +7,6 @@ from scrapy.selector import Selector
     scrapy crawl ycombinator --nolog
 """
 
-NUM_OF_NEWS_TO_CRAWL = 200
-
 class YCombinatorSpider(CrawlSpider):
     name = 'ycombinator'
     allowed_domains = ['news.ycombinator.com']
