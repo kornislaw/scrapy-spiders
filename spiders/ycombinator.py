@@ -2,7 +2,6 @@
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import Selector
-from scrapy.http import Request
 
 """ Run command:
     scrapy crawl ycombinator --nolog
@@ -14,8 +13,6 @@ class YCombinatorSpider(CrawlSpider):
     name = 'ycombinator'
     allowed_domains = ['news.ycombinator.com']
     start_urls = ['https://news.ycombinator.com/newest']
-
-    news_crawled = []
 
     rules = [
         Rule(LinkExtractor(
@@ -33,14 +30,6 @@ class YCombinatorSpider(CrawlSpider):
 
     def parse_item(self, response):
         print("#"*20, response.url, "#"*20)
-
-        # for i in response.xpath("//a[@class='storylink']/@href").extract():
-        #     self.news_crawled.append(i)
-        #
-        # if len(self.news_crawled) >= NUM_OF_NEWS_TO_CRAWL:
-        #     for link in self.news_crawled[0:NUM_OF_NEWS_TO_CRAWL]:
-        #         print(link)
-        #         Request(link, callback=self.parse_comments)
 
     def parse_comments(self, response):
 
