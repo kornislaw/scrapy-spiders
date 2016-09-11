@@ -5,10 +5,15 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
 
-
-class MeetupItem(scrapy.Item):
+class MeetupItem(Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    # name = Field()
     pass
+
+class PicItem(Item):
+    image_urls = Field()
+    images = Field()
+    title = Field()
+    url = Field()

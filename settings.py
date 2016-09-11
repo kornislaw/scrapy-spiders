@@ -15,6 +15,10 @@ SPIDER_MODULES = ['meetup.spiders']
 NEWSPIDER_MODULE = 'meetup.spiders'
 
 
+FEED_URI = 'logs/%(name)s/%(time)s.csv'
+FEED_FORMAT = 'csv'
+
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'meetup (+http://www.yourdomain.com)'
 

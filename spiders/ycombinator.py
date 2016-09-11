@@ -10,23 +10,21 @@ from scrapy.selector import Selector
 class YCombinatorSpider(CrawlSpider):
     name = 'ycombinator'
     allowed_domains = ['news.ycombinator.com']
-    start_urls = ['https://news.ycombinator.com/newest']
+    start_urls = ['https://news.ycombinator.com/news']
 
     rules = [
-        Rule(LinkExtractor(
-            allow=['newest\?next=\d*&n=\d*']),
-            callback='parse_item',
+        Rule(LinkExtractor(allow=['news\?p\=\d+']),
+            callback='parse_start_url',
             follow=True
              ),
 
-        Rule(LinkExtractor(
-            allow=['item\?id=\d*']),
+        Rule(LinkExtractor(allow=['item\?id=\d*']),
             callback='parse_comments',
             follow=True
         ),
     ]
 
-    def parse_item(self, response):
+    def parse_start_url(self, response):
         print("#"*20, response.url, "#"*20)
 
     def parse_comments(self, response):
